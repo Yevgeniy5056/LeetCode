@@ -5,10 +5,12 @@ public class MaximumAverageSubarray_643 {
     public static void main(String[] args) {
 
         var array = new int[]{1, 12, -5, -6, 50, 3};
-        var k = 4;
+        var array2 = new int[]{0, 4, 0, 3, 2};
 
-        System.out.println(findMaxAverage(array, k));
-        System.out.println(findMaxAverage2(array, k));
+        System.out.println(findMaxAverage(array, 4));
+        System.out.println(findMaxAverage2(array, 4));
+        System.out.println(findMaxAverage(array2, 1));
+        System.out.println(findMaxAverage2(array2, 1));
     }
 
     private static double findMaxAverage(int[] nums, int k) {
@@ -31,9 +33,11 @@ public class MaximumAverageSubarray_643 {
         for (int i = 0; i < k; i++) {
             sum += nums[i];
         }
+        double res = sum;
         for (int i = k; i < nums.length; i++) {
-            sum = Math.max(sum, sum - nums[i - k] + nums[i]);
+            sum = sum - nums[i - k] + nums[i];
+            res = Math.max(res, sum);
         }
-        return sum / k;
+        return res / k;
     }
 }
