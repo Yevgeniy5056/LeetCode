@@ -12,6 +12,7 @@ public class FindTheDifferenceOfTwoArrays_2215 {
         int[] nums2 = new int[]{2, 4, 6};
 
         System.out.println(findDifference(nums1, nums2));
+        System.out.println(findDifferenceOptimal(nums1, nums2));
     }
 
     private static List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
@@ -25,5 +26,20 @@ public class FindTheDifferenceOfTwoArrays_2215 {
         for (int i : nums2) set2.add(i);
         for (int i : nums1) if (!set2.contains(i)) set1.add(i);
         return new ArrayList<>(set1);
+    }
+
+    private static List<List<Integer>> findDifferenceOptimal(int[] nums1, int[] nums2) {
+        var set1 = new HashSet<Integer>();
+        var set2 = new HashSet<Integer>();
+
+        for (int i : nums1) set1.add(i);
+        for (int i : nums2) set2.add(i);
+
+        var list1 = new ArrayList<>(set1);
+        list1.removeAll(set2);
+        var list2 = new ArrayList<>(set2);
+        list2.removeAll(set1);
+
+        return List.of(list1, list2);
     }
 }
