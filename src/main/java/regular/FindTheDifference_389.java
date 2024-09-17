@@ -10,6 +10,7 @@ public class FindTheDifference_389 {
         var t = "abcde";
 
         System.out.println(findTheDifference(s, t));
+        System.out.println(findTheDifferenceBitManipulation(s, t));
     }
 
     private static char findTheDifference(String s, String t) {
@@ -29,5 +30,17 @@ public class FindTheDifference_389 {
             }
         }
         return res;
+    }
+
+    private static char findTheDifferenceBitManipulation(String s, String t) {
+
+        char ch = 0;
+        for (int i = 0; i < s.length(); i++) {
+            ch ^= s.charAt(i);
+        }
+        for (int i = 0; i < t.length(); i++) {
+            ch ^= t.charAt(i);
+        }
+        return ch;
     }
 }
